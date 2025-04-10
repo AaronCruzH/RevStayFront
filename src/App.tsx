@@ -9,6 +9,8 @@ import { HotelsAmenitesLayout } from './components/hotels/amenities/HotelsAmenit
 import { HotelsImagesLayout } from './components/hotels/images/HotelsImagesLayout'
 import { AddHotel } from './components/hotels/AddHotel'
 import { UpdateHotel } from './components/hotels/UpdateHotel'
+import { UpdateHotelAmenity } from './components/hotels/amenities/UpdateHotelAmenity'
+import { AddHotelAmenity } from './components/hotels/amenities/AddHotelAmenity'
 
 function App() {
   
@@ -28,6 +30,9 @@ function App() {
               <Route path="hotels/:hotelId/update" element={<UpdateHotel />} />
               <Route path="hotels/:hotelId/images" element={<HotelsImagesLayout />} />
               <Route path="hotels/:hotelId/amenities" element={<HotelsAmenitesLayout />} />
+              <Route path="hotels/:hotelId/amenities/new" element={<AddHotelAmenity />} />
+              <Route path="hotels/:hotelId/amenities/:hotelAmenityId/update" element={<UpdateHotelAmenity />} />
+
               <Route path="*" element={<h1>404 Not Found</h1>} />
             </Route>
       </Routes>
