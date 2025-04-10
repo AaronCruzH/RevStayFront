@@ -1,7 +1,7 @@
 import { IHotel } from "./IHotel";
 
 export interface IHotelImage {
-    hotelAmenityId: number;
+    hotelImageId: number;
     name: string; 
     description: string;
     url: string; 
