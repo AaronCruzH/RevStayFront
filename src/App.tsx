@@ -13,8 +13,20 @@ import { UpdateHotelAmenity } from './components/hotels/amenities/UpdateHotelAme
 import { AddHotelAmenity } from './components/hotels/amenities/AddHotelAmenity'
 import { UpdateHotelImage } from './components/hotels/images/UpdateHotelImage'
 import { AddHotelImage } from './components/hotels/images/AddHotelImage'
+import { createContext, useState } from 'react'
+
+export interface AuthContextType{
+  role: "USER"|"OWNER"|"ADMIN" | "UNAUTHENTICATED"
+  token: string | null
+  setRole:(role: "USER"|"OWNER"|"ADMIN" | "UNAUTHENTICATED") => void
+  setToken:(token: string | null) => void
+}
+export const authContext = createContext<AuthContextType | null>(null)
 
 function App() {
+
+  const [role, setRole] = useState<"USER"|"OWNER"|"ADMIN" | "UNAUTHENTICATED">("UNAUTHENTICATED")
+  const [token, setToken] = useState<string | null>(null)
   
   return (
     <>

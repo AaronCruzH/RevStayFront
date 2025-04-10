@@ -1,11 +1,9 @@
-import { ICourse } from "./ICourse";
-
-export interface IUser {
-    userId: number,
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string,
-    role: "STUDENT" | "TEACHER", // This will say it's a string but the only allowed values are Student or teacher
-    courses: ICourse[]
+export interface IUser{
+    userID:number,
+    firstName:string,
+    lastName:string,
+    email:string,
+    userType: "USER"|"OWNER"|"ADMIN" | "UNAUTHENTICATED"
+    password:string,
+    accessToken:string
 }
