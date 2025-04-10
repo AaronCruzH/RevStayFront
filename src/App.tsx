@@ -14,6 +14,7 @@ import { AddHotelAmenity } from './components/hotels/amenities/AddHotelAmenity'
 import { UpdateHotelImage } from './components/hotels/images/UpdateHotelImage'
 import { AddHotelImage } from './components/hotels/images/AddHotelImage'
 import { createContext, useState } from 'react'
+import Rooms from './components/Rooms/Rooms'
 
 export interface AuthContextType{
   role: "USER"|"OWNER"|"ADMIN" | "UNAUTHENTICATED"
@@ -30,13 +31,16 @@ function App() {
   
   return (
     <>
+    <authContext.Provider value={{role,setRole,token,setToken}}>
       <BrowserRouter>
       <Nav />
 
       <Routes> 
-        <Route path='/' element={<Courses />}/>
+        <Route path='/'/>
         <Route path='/login' element={<Login />} />
 
+        <Route path="rooms" element={<Rooms />} /> 
+        
         <Route path="private" element={<HomePrivate />}>
               <Route index element={<HotelsLayout />} /> {/* Default route for private section */}
               <Route path="hotels" element={<HotelsLayout />} /> 
@@ -48,13 +52,13 @@ function App() {
               <Route path="hotels/:hotelId/amenities" element={<HotelsAmenitesLayout />} />
               <Route path="hotels/:hotelId/amenities/new" element={<AddHotelAmenity />} />
               <Route path="hotels/:hotelId/amenities/:hotelAmenityId/update" element={<UpdateHotelAmenity />} />
-
               <Route path="*" element={<h1>404 Not Found</h1>} />
             </Route>
       </Routes>
       
       
       </BrowserRouter>
+      </authContext.Provider>
     </>
   )
 }

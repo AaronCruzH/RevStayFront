@@ -43,7 +43,7 @@ function Login() {
 
             if (res.status === 200 ){
             // This indicates a successful login
-                navigate('/') // Courses route
+                navigate('/private/hotels') // Courses route
                 return
             }
         } catch (error){
