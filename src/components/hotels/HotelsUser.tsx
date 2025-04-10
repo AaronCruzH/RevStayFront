@@ -3,6 +3,8 @@ import { IRoom } from "../../interfaces/IRoom";
 import { ChangeEvent, useEffect, useState } from "react";
 import { IRoomFilters } from "../../interfaces/IRoomFilters";
 import "./hotels.css"; // Importa el CSS
+import { Error } from "../generics/Error";
+import { Loading } from "../generics/Loading";
 
 export const HotelsUser = () => {
   const [rooms, setRooms] = useState<Array<IRoom>>([]);
@@ -63,6 +65,12 @@ export const HotelsUser = () => {
   return (
     <>
       <div className="container">
+
+      <div className="titleDiv">
+            <h2>Rooms List</h2>
+          </div>
+
+
         <div className="searchForm">
           <form onSubmit={(e) => e.preventDefault()}>
             <h2>Search Rooms</h2>
@@ -149,17 +157,19 @@ export const HotelsUser = () => {
         </div>
 
         <div className="searchResults">
-          <h2>Search Results</h2>
-          {error && <div className="error">Error: {error}</div>}
-          {loading && <div className="loading">Loading...</div>}
-          {rooms.length === 0 && <div>No results found</div>}
+                {error && <Error error={error}/>}
+                {loading && <Loading />}
+                {rooms.length === 0 && <div>No results found</div>}
           <div className="search-results">
             {rooms.map((room) => (
               <div className="card" key={room.hotelRoomId}>
-                {/* <img src={room.hotel?.images[0].url || "https://via.placeholder.com/150"} alt="Hotel Room" /> */}
+
+                {room.hotel?.images && room.hotel?.images.length > 0 && (
+                  <img src={room.hotel?.images[0].url} alt="Hotel Room" className="hotel-image" />
+                )}
                 <div className="card-content">
-                  <h3>{room.hotel.name}</h3>
-                  <p>Address: {`${room.hotel.city}, ${room.hotel.state}, ${room.hotel.country}`}</p>
+                  <h3>{room.hotel?.name}</h3>
+                  <p>Address: {`${room.hotel?.city}, ${room.hotel?.state}, ${room.hotel?.country}`}</p>
                   <p>Capacity: {room.capacity}</p>
                   <p>Price: ${room.price}</p>
                   <button>Reserve</button>

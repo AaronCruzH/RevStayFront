@@ -4,6 +4,8 @@ import { IHotelFilters } from "../../interfaces/IHotelFilters";
 import { useAxiosFetch } from "../../hooks/useAxiosFetch";
 import './hotels.css'
 import { useNavigate } from "react-router-dom";
+import { Loading } from "../generics/Loading";
+import { Error } from "../generics/Error";
 
 export const HotelsAdmin = () => {
   const navigate = useNavigate();
@@ -70,9 +72,17 @@ export const HotelsAdmin = () => {
   return (
     <>
       <div className="container">
+
+      <div className="titleDiv">
+            <h2>Hotels List</h2>
+            <button type="button" onClick={() => navigate("new")}>New Hotel</button>
+          </div>
+
         <div className="searchForm">
           <form onSubmit={(e) => e.preventDefault()}>
-            <h2>Search Hotels</h2>
+          <div className="formRow">
+          <h2>Search Hotels</h2>
+          </div>
             <div className="formRow">
               <div className="formGroup">
                 <label htmlFor="hotelName">Hotel Name:</label>
@@ -102,9 +112,8 @@ export const HotelsAdmin = () => {
         </div>
 
         <div className="searchResults">
-          <h2>Hotels List</h2>
-          {error && <div>Error: {error}</div>}
-          {loading && <div>Loading...</div>}
+          {error && <Error error={error}/>}
+          {loading && <Loading />}
           <table>
             <thead>
               <tr>
@@ -129,7 +138,7 @@ export const HotelsAdmin = () => {
                   <td>{hotel.houseNumber}</td>
                   <td>{hotel.postalCode}</td>
                   <td>
-                    <button>Editar</button>
+                    <button onClick={() => navigate(`${hotel.hotelId}/update`)}>Update</button>
                     <button onClick={() => handlerImages(hotel.hotelId, hotel.name)}>Images</button>
                     <button onClick={() => handlerAmenities(hotel.hotelId, hotel.name)}>Amenities</button>
                   </td>
