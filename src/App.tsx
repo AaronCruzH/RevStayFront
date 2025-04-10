@@ -11,6 +11,8 @@ import { AddHotel } from './components/hotels/AddHotel'
 import { UpdateHotel } from './components/hotels/UpdateHotel'
 import { UpdateHotelAmenity } from './components/hotels/amenities/UpdateHotelAmenity'
 import { AddHotelAmenity } from './components/hotels/amenities/AddHotelAmenity'
+import { UpdateHotelImage } from './components/hotels/images/UpdateHotelImage'
+import { AddHotelImage } from './components/hotels/images/AddHotelImage'
 
 function App() {
   
@@ -29,6 +31,8 @@ function App() {
               <Route path="hotels/new" element={<AddHotel />} /> 
               <Route path="hotels/:hotelId/update" element={<UpdateHotel />} />
               <Route path="hotels/:hotelId/images" element={<HotelsImagesLayout />} />
+              <Route path="hotels/:hotelId/images/new" element={<AddHotelImage />} />
+              <Route path="hotels/:hotelId/images/:hotelImageId/update" element={<UpdateHotelImage />} />
               <Route path="hotels/:hotelId/amenities" element={<HotelsAmenitesLayout />} />
               <Route path="hotels/:hotelId/amenities/new" element={<AddHotelAmenity />} />
               <Route path="hotels/:hotelId/amenities/:hotelAmenityId/update" element={<UpdateHotelAmenity />} />

@@ -10,7 +10,7 @@ export const HotelsAmenitesLayout = () => {
   const [images, setImages] = useState<Array<IHotelAmenity>>([]);
 
   const navigate = useNavigate();
-  const { hotelId } = useParams<{ hotelId: string }>(); 
+  const { hotelId } = useParams<{ hotelId: string }>();
   const location = useLocation();
   const name = location.state?.name as string;
   const [data, error, loading, fetchData] = useAxiosFetch({
@@ -33,12 +33,12 @@ export const HotelsAmenitesLayout = () => {
 
       <div className="titleDiv">
         <h2>Amenities for Hotel: {name}</h2>
-          <button type="button" onClick={() => navigate("new")}>New amenity</button>
-        </div>
+        <button type="button" onClick={() => navigate("new")}>New amenity</button>
+      </div>
 
       <div className="searchResults">
-          {error && <Error error={error}/>}
-          {loading && <Loading />}
+        {error && <Error error={error} />}
+        {loading && <Loading />}
         <table>
           <thead>
             <tr>
@@ -59,7 +59,7 @@ export const HotelsAmenitesLayout = () => {
                   </a>
                 </td>
                 <td>
-                  <button onClick={() => navigate(`${image.hotelAmenityId}/update`)}>Edit</button>
+                  <button onClick={() => navigate(`${image.hotelAmenityId}/update`)}>Update</button>
                 </td>
               </tr>
             ))}

@@ -3,6 +3,8 @@ import { IHotelImage } from '../../../interfaces/IHotelImage';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import '../images_amenities.css';
 import { useAxiosFetch } from '../../../hooks/useAxiosFetch';
+import { Error } from '../../generics/Error';
+import { Loading } from '../../generics/Loading';
 
 
 export const HotelsImagesLayout = () => {
@@ -29,32 +31,42 @@ export const HotelsImagesLayout = () => {
 
   return (
     <div className="imagesContainer">
-      <h2>Images for Hotel: {name}</h2>
-      {error && <div className="error">Error: {error}</div>}
-      {loading && <div className="loading">Loading...</div>}
 
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>URL</th>
-          </tr>
-        </thead>
-        <tbody>
-          {images.map((image) => (
-            <tr key={image.hotelAmenityId}>
-              <td>{image.name}</td>
-              <td>{image.description}</td>
-              <td>
-                <a href={image.url} target="_blank" rel="noopener noreferrer">
-                  View Image
-                </a>
-              </td>
+      <div className="titleDiv">
+        <h2>Images for Hotel: {name}</h2>
+        <button type="button" onClick={() => navigate("new")}>New image</button>
+      </div>
+
+      <div className="searchResults">
+        {error && <Error error={error} />}
+        {loading && <Loading />}
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>URL</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {images.map((image) => (
+              <tr key={image.hotelImageId}>
+                <td>{image.name}</td>
+                <td>{image.description}</td>
+                <td>
+                  <a href={image.url} target="_blank" rel="noopener noreferrer">
+                    View Image
+                  </a>
+                </td>
+                <td>
+                  <button onClick={() => navigate(`${image.hotelImageId}/update`)}>Update</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
