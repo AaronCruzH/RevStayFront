@@ -1,0 +1,47 @@
+.imagesContainer {
+    padding: 20px;
+    font-family: sans-serif;
+  }
+  
+  .imagesContainer h2 {
+    margin-bottom: 20px;
+  }
+  
+  .imagesContainer table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .imagesContainer th,
+  .imagesContainer td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .imagesContainer th {
+    background-color: #f2f2f2;
+  }
+  
+  .imagesContainer tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .imagesContainer a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .imagesContainer a:hover {
+    text-decoration: underline;
+  }
+  
+  .error {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  .loading {
+    font-style: italic;
+    margin-bottom: 10px;
+  }
