@@ -19,20 +19,20 @@ export const AddHotel = () => {
         postalCode: ""
     });
 
-    
-      const [data, error, loading, fetchData] = useAxiosFetch({
+
+    const [data, error, loading, fetchData] = useAxiosFetch({
         method: "POST",
         url: "/hotels",
         params: null,
         body: hotel,
         executeImmediately: false
-      });
-    
+    });
+
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         let { name, value } = e.target;
 
-        if(typeof value === "string") {
+        if (typeof value === "string") {
             value = value.trim();
         }
 
@@ -59,7 +59,7 @@ export const AddHotel = () => {
         }
     }
 
-    
+
     const addNewHotel = async () => {
 
         // check if all fields are filled
@@ -68,14 +68,14 @@ export const AddHotel = () => {
             return;
         }
 
-        
+
         fetchData();
-        
+
     };
 
 
     useEffect(() => {
-        if (data) {
+        if (data && !error) {
             alert("Hotel added successfully!");
             resetFilters(); // Limpiar el formulario
             navigate(-1); // Redirigir a la lista de hoteles
@@ -90,43 +90,43 @@ export const AddHotel = () => {
                     <form onSubmit={(e) => e.preventDefault()}>
                         <h2>New hotel</h2>
 
-                        {error && <Error error={error}/>}
+                        {error && <Error error={error} />}
                         {loading && <Loading />}
                         <div className="formRow">
                             <div className="formGroup">
-                                <label htmlFor="hotelName">Name:</label>
+                                <label htmlFor="name">Name:</label>
                                 <input type="text" id="name" name="name" value={hotel.name} onChange={handleChange} />
                             </div>
                             <div className="formGroup">
-                                <label htmlFor="hotelCountry">Country:</label>
+                                <label htmlFor="country">Country:</label>
                                 <input type="text" id="country" name="country" value={hotel.country} onChange={handleChange} />
                             </div>
 
                             <div className="formGroup">
-                                <label htmlFor="hotelState">State:</label>
+                                <label htmlFor="state">State:</label>
                                 <input type="text" id="state" name="state" value={hotel.state} onChange={handleChange} />
                             </div>
 
                             <div className="formGroup">
-                                <label htmlFor="hotelCity">City:</label>
+                                <label htmlFor="city">City:</label>
                                 <input type="text" id="city" name="city" value={hotel.city} onChange={handleChange} />
                             </div>
 
-                            
+
                             <div className="formGroup">
                                 <label htmlFor="hotelCity">Street:</label>
                                 <input type="text" id="street" name="street" value={hotel.street} onChange={handleChange} />
                             </div>
 
-                            
+
                             <div className="formGroup">
-                                <label htmlFor="hotelCity">House number:</label>
+                                <label htmlFor="houseNumber">House number:</label>
                                 <input type="text" id="houseNumber" name="houseNumber" value={hotel.houseNumber} onChange={handleChange} />
                             </div>
 
-                            
+
                             <div className="formGroup">
-                                <label htmlFor="hotelCity">Postal code:</label>
+                                <label htmlFor="postalCode">Postal code:</label>
                                 <input type="text" id="postalCode" name="postalCode" value={hotel.postalCode} onChange={handleChange} />
                             </div>
                         </div>

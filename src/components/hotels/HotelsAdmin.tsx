@@ -73,16 +73,16 @@ export const HotelsAdmin = () => {
     <>
       <div className="container">
 
-      <div className="titleDiv">
-            <h2>Hotels List</h2>
-            <button type="button" onClick={() => navigate("new")}>New Hotel</button>
-          </div>
+        <div className="titleDiv">
+          <h2>Hotels List</h2>
+          <button type="button" onClick={() => navigate("new")}>New Hotel</button>
+        </div>
 
         <div className="searchForm">
           <form onSubmit={(e) => e.preventDefault()}>
-          <div className="formRow">
-          <h2>Search Hotels</h2>
-          </div>
+            <div className="formRow">
+              <h2>Search Hotels</h2>
+            </div>
             <div className="formRow">
               <div className="formGroup">
                 <label htmlFor="hotelName">Hotel Name:</label>
@@ -112,7 +112,7 @@ export const HotelsAdmin = () => {
         </div>
 
         <div className="searchResults">
-          {error && <Error error={error}/>}
+          {error && <Error error={error} />}
           {loading && <Loading />}
           <table>
             <thead>

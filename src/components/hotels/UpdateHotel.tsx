@@ -66,7 +66,7 @@ export const UpdateHotel = () => {
     };
 
     useEffect(() => {
-        if (fetchUpdateHotel) {
+        if (fetchUpdateHotel && !errorUpdate) {
             alert("Hotel updated successfully!");
             navigate(-1);
         }
@@ -78,42 +78,42 @@ export const UpdateHotel = () => {
                 <h2>Update Hotel</h2>
                 <form onSubmit={(e) => e.preventDefault()}>
                     <div className="formRow">
-                        <div className="formGroup">
-                            <label htmlFor="hotelName">Name:</label>
-                            <input type="text" id="name" name="name" value={hotel.name} onChange={handleChange} />
-                        </div>
-                        <div className="formGroup">
-                            <label htmlFor="hotelCountry">Country:</label>
-                            <input type="text" id="country" name="country" value={hotel.country} onChange={handleChange} />
-                        </div>
+                    <div className="formGroup">
+                                <label htmlFor="name">Name:</label>
+                                <input type="text" id="name" name="name" value={hotel.name} onChange={handleChange} />
+                            </div>
+                            <div className="formGroup">
+                                <label htmlFor="country">Country:</label>
+                                <input type="text" id="country" name="country" value={hotel.country} onChange={handleChange} />
+                            </div>
 
-                        <div className="formGroup">
-                            <label htmlFor="hotelState">State:</label>
-                            <input type="text" id="state" name="state" value={hotel.state} onChange={handleChange} />
-                        </div>
+                            <div className="formGroup">
+                                <label htmlFor="state">State:</label>
+                                <input type="text" id="state" name="state" value={hotel.state} onChange={handleChange} />
+                            </div>
 
-                        <div className="formGroup">
-                            <label htmlFor="hotelCity">City:</label>
-                            <input type="text" id="city" name="city" value={hotel.city} onChange={handleChange} />
-                        </div>
+                            <div className="formGroup">
+                                <label htmlFor="city">City:</label>
+                                <input type="text" id="city" name="city" value={hotel.city} onChange={handleChange} />
+                            </div>
 
+                            
+                            <div className="formGroup">
+                                <label htmlFor="hotelCity">Street:</label>
+                                <input type="text" id="street" name="street" value={hotel.street} onChange={handleChange} />
+                            </div>
 
-                        <div className="formGroup">
-                            <label htmlFor="hotelCity">Street:</label>
-                            <input type="text" id="street" name="street" value={hotel.street} onChange={handleChange} />
-                        </div>
+                            
+                            <div className="formGroup">
+                                <label htmlFor="houseNumber">House number:</label>
+                                <input type="text" id="houseNumber" name="houseNumber" value={hotel.houseNumber} onChange={handleChange} />
+                            </div>
 
-
-                        <div className="formGroup">
-                            <label htmlFor="hotelCity">House number:</label>
-                            <input type="text" id="houseNumber" name="houseNumber" value={hotel.houseNumber} onChange={handleChange} />
-                        </div>
-
-
-                        <div className="formGroup">
-                            <label htmlFor="hotelCity">Postal code:</label>
-                            <input type="text" id="postalCode" name="postalCode" value={hotel.postalCode} onChange={handleChange} />
-                        </div>
+                            
+                            <div className="formGroup">
+                                <label htmlFor="postalCode">Postal code:</label>
+                                <input type="text" id="postalCode" name="postalCode" value={hotel.postalCode} onChange={handleChange} />
+                            </div>
                     </div>
                     <div className="formRow">
                         <button type="submit" onClick={updateHotel}>Update Hotel</button>
