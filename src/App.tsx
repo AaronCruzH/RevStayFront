@@ -15,6 +15,7 @@ import { UpdateHotelImage } from './components/hotels/images/UpdateHotelImage'
 import { AddHotelImage } from './components/hotels/images/AddHotelImage'
 import { createContext, useState } from 'react'
 import Rooms from './components/Rooms/Rooms'
+import RegisterRoom from './components/Rooms/RegisterRoom'
 
 export interface AuthContextType{
   role: "USER"|"OWNER"|"ADMIN" | "UNAUTHENTICATED"
@@ -40,6 +41,7 @@ function App() {
         <Route path='/login' element={<Login />} />
 
         <Route path="rooms" element={<Rooms />} /> 
+        <Route path="rooms/register" element={<RegisterRoom />} /> 
         
         <Route path="private" element={<HomePrivate />}>
               <Route index element={<HotelsLayout />} /> {/* Default route for private section */}

@@ -3,6 +3,7 @@ import axios from "axios"
 import { authContext } from "../../App"
 import { IRoom } from "../../interfaces/IRoom"
 import RoomContainer from "./RoomContainer"
+import { useNavigate } from "react-router-dom"
 
 function Rooms() {
   const [rooms, setRooms] = useState<IRoom[]>([])
@@ -24,9 +25,14 @@ const sessionToken = useContext(authContext)?.token
       console.log("Caracoles")
     })
   }, []) //Solo se dispara cuando el componente se monta
+  const navigate = useNavigate()
 
   return (
     <div>
+      <button onClick={()=>navigate('/rooms/register')}>Register new room</button>
+      <br/>
+      <br/>
+      <h1>Registered rooms</h1>
       <table style={{ border: '1px solid black', width: '100%', textAlign: 'left' }}>
       <tr style={{}}>
         <td >Room ID</td>
