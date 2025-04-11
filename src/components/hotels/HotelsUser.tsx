@@ -17,6 +17,23 @@ export const HotelsUser = () => {
     body: filters
   });
 
+  function bookRoom(roomId: number): void {
+    console.log(roomId);
+    useAxiosFetch({
+      method: "POST",
+      url: "/reservations",
+      params: null,
+      body: {
+        "room": {
+            "roomID": roomId
+        },
+        "totalGuests": filters.capacity,
+        "checkIn":  filters.checkInDate,
+        "checkOut":  filters.checkOutDate      
+      }
+    });
+  }
+
   useEffect(() => {
     if (data) {
       setRooms(data);
@@ -172,7 +189,7 @@ export const HotelsUser = () => {
                   <p>Address: {`${room.hotel?.city}, ${room.hotel?.state}, ${room.hotel?.country}`}</p>
                   <p>Capacity: {room.capacity}</p>
                   <p>Price: ${room.price}</p>
-                  <button>Reserve</button>
+                  <button onClick={() => bookRoom(room.roomID)}>Reserve</button>
                 </div>
               </div>
             ))}
