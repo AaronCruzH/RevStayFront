@@ -1,14 +1,19 @@
 import { useAxiosFetch } from "../../hooks/useAxiosFetch";
 import { IRoom } from "../../interfaces/IRoom";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { IRoomFilters } from "../../interfaces/IRoomFilters";
 import "./hotels.css"; // Importa el CSS
 import { Error } from "../generics/Error";
 import { Loading } from "../generics/Loading";
+import { authContext } from "../../App";
+import { IReservation } from "../../interfaces/IReservation";
+import axios from "axios";
 
 export const HotelsUser = () => {
   const [rooms, setRooms] = useState<Array<IRoom>>([]);
   const [filters, setFilters] = useState<IRoomFilters>({});
+
+  const sessionToken = useContext(authContext)?.token;
 
   const [data, error, loading, fetchData] = useAxiosFetch({
     method: "POST",
@@ -19,19 +24,32 @@ export const HotelsUser = () => {
 
   function bookRoom(roomId: number): void {
     console.log(roomId);
-    useAxiosFetch({
-      method: "POST",
-      url: "/reservations",
-      params: null,
-      body: {
+      const body = {
         "room": {
             "roomID": roomId
         },
         "totalGuests": filters.capacity,
         "checkIn":  filters.checkInDate,
         "checkOut":  filters.checkOutDate      
-      }
-    });
+      };
+    
+    axios.post<IReservation[]>(
+      "http://localhost:8080/reservations",
+      body,  // Segundo argumento: los datos que quieres enviar (el cuerpo)
+      {
+        headers: {
+          Authorization: `Bearer ${sessionToken}`
+        }
+      }  // Tercer argumento: configuración, incluidos los headers
+    )
+    .then((res) => {
+      // setRooms(res.data)
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err)
+      console.log("Caracoles")
+    })
   }
 
   useEffect(() => {
