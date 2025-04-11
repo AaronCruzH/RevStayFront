@@ -5,10 +5,10 @@ function Nav() {
     <div>
       {/* Inside of here I will have a list of Links to various components */}
       <ul>
-        <li><Link to='/'>Courses</Link></li>
         <li><Link to='/private/hotels'>Hotels</Link></li>
         <li><Link to='/login'>Login</Link></li>
         <li><Link to='/register'>Register</Link></li>
+        <li><Link to='/rooms'>Rooms</Link></li>
       </ul>
     </div>
   )
