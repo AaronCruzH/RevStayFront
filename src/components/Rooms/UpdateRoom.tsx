@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 
 function UpdateRoom() {
     const [roomID, setRoomID] = useState(0)
+    const [currentRoomID, setCurrentRoomID] = useState(0)
 
 let changeRoomIDValue = (e: ChangeEvent<HTMLInputElement>) => {
     setRoomID(Number(e.target.value))
@@ -15,8 +16,6 @@ const sessionToken = useContext(authContext)?.token
 const navigate = useNavigate()
 
 const [roomWasFound, setRoomWasFound] = useState(false)
-
-const [foundRoom, setFoundRoom] = useState<IRoom|null>(null)
 
 async function searchRoom(): Promise<void> {
     try {
@@ -28,21 +27,51 @@ async function searchRoom(): Promise<void> {
           },
         }
       );
-  
-      const room = response.data;
-      setFoundRoom(room);
-      console.log(room);
+
+      const room = response.data
+      console.log(room)
   
       setPrice(String(room.price));
-      setRoomNumber(String(room.roomNumber));
-      setRoomCapacity(String(room.capacity));
-      setRoomType(String(room.roomType));
+      setRoomNumber(String(room.roomNumber))
+      setRoomCapacity(String(room.capacity))
+      setRoomType(String(room.roomType))
+      setCurrentRoomID(room.roomID)
       setRoomWasFound(true);
   
     } catch (error) {
-      console.log(error);
-      console.log("Caracoles");
-      setRoomWasFound(false);
+      console.log(error)
+      console.log("Caracoles")
+      setRoomWasFound(false)
+    }
+  }
+
+  async function updateRoom(): Promise<void> {
+    try {
+
+        let updatedRoom : IRoom = {
+            roomType: roomType,
+            capacity: Number(roomCapacity),
+            roomNumber: Number(roomNumber),
+            price: Number(price),
+            hotel: null,
+            roomID: currentRoomID 
+        }
+
+      const response = await axios.put<IRoom>(
+        `http://localhost:8080/rooms/update/${currentRoomID}`, updatedRoom,
+        {
+          headers: {
+            Authorization: `Bearer ${sessionToken}`,
+          },
+        }
+      );
+  
+      const updatedRoomResult = response.data;
+      console.log(updatedRoomResult)
+  
+    } catch (error) {
+      console.log(error)
+      console.log("Caracoles")
     }
   }
   
@@ -111,9 +140,11 @@ async function searchRoom(): Promise<void> {
       <br/>
         <br/>
         <br/>
-        <button onClick={UpdateRoom}>Update</button>
+        <button onClick={updateRoom}>Update</button>
     </div>
 }
+
+
     </>
   )
 }
