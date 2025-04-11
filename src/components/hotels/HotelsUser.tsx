@@ -12,7 +12,7 @@ export const HotelsUser = () => {
 
   const [data, error, loading, fetchData] = useAxiosFetch({
     method: "POST",
-    url: "/hotels/rooms/filter",
+    url: "/rooms/filter",
     params: null,
     body: filters
   });
