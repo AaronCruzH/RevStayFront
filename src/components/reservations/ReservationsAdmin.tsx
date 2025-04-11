@@ -6,6 +6,7 @@ import axios from "axios";
 export const ReservationsAdmin = () => {
     const [reservations, setReservations] = useState<IReservation[]>([]);
     const sessionToken = useContext(authContext)?.token;
+    const role = useContext(authContext)?.role;
 
     useEffect(() => {
         if (!sessionToken) return;
@@ -35,13 +36,14 @@ export const ReservationsAdmin = () => {
                             <th>Created At</th>
                             <th>Total</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {reservations.map((reservation) => (
                             <tr key={reservation.reservationId}>
                                 <td>{reservation.reservationId}</td>
-                                <td>{reservation.user?.userID}</td>
+                                <td>{reservation.user?.id}</td>
                                 <td>{reservation.room?.roomID}</td>
                                 <td>{reservation.totalGuests}</td>
                                 <td>{new Date(reservation.checkIn).toLocaleDateString()}</td>
@@ -49,6 +51,16 @@ export const ReservationsAdmin = () => {
                                 <td>{new Date(reservation.createdAt).toLocaleDateString()}</td>
                                 <td>{reservation.total}</td>
                                 <td>{reservation.reservationStatus}</td>
+                                <td>
+                                    {role === "OWNER" || role === "ADMIN" ? (
+                                        <>
+                                            <button>Accept</button>
+                                            <button>Reject</button>
+                                        </>
+                                    ) : (
+                                        <button>Cancel</button>
+                                    )}
+                                </td>
                             </tr>
                         ))}
                     </tbody>
