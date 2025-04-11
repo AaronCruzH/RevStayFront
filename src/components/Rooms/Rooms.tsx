@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import axios from "axios"
 import { authContext } from "../../App"
 import { IRoom } from "../../interfaces/IRoom"
+import RoomContainer from "./RoomContainer"
 
 function Rooms() {
   const [rooms, setRooms] = useState<IRoom[]>([])
@@ -26,8 +27,23 @@ const sessionToken = useContext(authContext)?.token
 
   return (
     <div>
-      Rooms
-      {rooms.length}
+      <table style={{ border: '1px solid black', width: '100%', textAlign: 'left' }}>
+      <tr style={{}}>
+        <td >Room ID</td>
+        <td>Room number</td>
+        <td>Capacity</td>
+        <td>Type</td>
+        <td>Price</td>
+        <td>Hotel ID</td>
+      </tr>
+
+      {
+        rooms.map((room) => {
+          return <RoomContainer{...room}
+          key={room.roomID}></RoomContainer>
+        })
+      }
+</table>
     </div>
   )
 }
