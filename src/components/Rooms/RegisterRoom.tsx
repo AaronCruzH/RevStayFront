@@ -1,5 +1,9 @@
-import { ChangeEvent, useState } from "react"
+import axios from "axios"
+import { ChangeEvent, useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { IRoom } from "../../interfaces/IRoom"
+import { authContext } from "../../App"
+import { IHotel } from "../../interfaces/IHotel"
 
 function RegisterRoom() {
 
@@ -15,10 +19,10 @@ function RegisterRoom() {
         setRoomNumber(e.target.value)
     }
 
-    const [capacity, setCapacity] = useState('')
+    const [roomCapacity, setRoomCapacity] = useState('')
 
     let changeCapacity = (e: ChangeEvent<HTMLInputElement>) =>{
-        setCapacity(e.target.value)
+        setRoomCapacity(e.target.value)
     }
 
     const [price, setPrice] = useState('')
@@ -33,11 +37,36 @@ function RegisterRoom() {
         setRoomType(e.target.value)
     }
 
-    function registerRoom() : void
+    const sessionToken = useContext(authContext)?.token
+
+     function registerRoom() : void
     {
-        console.log("Aqui registramos rooms")
+
+        let room: IRoom = {
+            roomType: roomType,
+            capacity: Number(roomCapacity),
+            roomNumber: Number(roomNumber),
+            price: Number(price),
+            hotel: null,
+            roomID: 0
+        }
+
+        axios.post<IRoom>(`http://localhost:8080/rooms/register/${hotelId}`, room,
+            {
+              headers:{
+                Authorization:`Bearer ${sessionToken}`
+              }
+            }
+          )
+          .then((res) => {
+            console.log(res.data)
+          })
+          .catch((err) =>{
+            console.log(err)
+            console.log("Caracoles")
+          })
     }
-    
+
     const navigate = useNavigate()
 
   return (
@@ -57,7 +86,7 @@ function RegisterRoom() {
       <br/>
       <br/>
       <label>
-        Capacity <input type="text" value={capacity} onChange={changeCapacity}/>
+        Capacity <input type="text" value={roomCapacity} onChange={changeCapacity}/>
       </label>
       <br/>
       <br/>

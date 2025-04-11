@@ -19,6 +19,7 @@ const sessionToken = useContext(authContext)?.token
     )
     .then((res) => {
       setRooms(res.data)
+      console.log(rooms)
     })
     .catch((err) =>{
       console.log(err)
