@@ -31,6 +31,7 @@ const sessionToken = useContext(authContext)?.token
   return (
     <div>
       <button onClick={()=>navigate('/rooms/register')}>Register new room</button>
+      <button onClick={()=>navigate('/rooms/update')}>Update room</button>
       <br/>
       <br/>
       <h1>Registered rooms</h1>
