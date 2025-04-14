@@ -8,8 +8,13 @@ import { useNavigate } from "react-router-dom"
 function Rooms() {
   const [rooms, setRooms] = useState<IRoom[]>([])
 const sessionToken = useContext(authContext)?.token
+const sessionRole = useContext(authContext)?.role
 
   useEffect(()=>{
+
+    if(sessionRole != "ADMIN"){
+      return
+    }
     axios.get<IRoom[]>("http://localhost:8080/rooms",
       {
         headers:{
@@ -29,6 +34,8 @@ const sessionToken = useContext(authContext)?.token
   const navigate = useNavigate()
 
   return (
+    <>
+    {sessionRole == "ADMIN" &&
     <div>
       <button onClick={()=>navigate('/rooms/register')}>Register new room</button>
       <button onClick={()=>navigate('/rooms/update')}>Update room</button>
@@ -52,7 +59,8 @@ const sessionToken = useContext(authContext)?.token
         })
       }
 </table>
-    </div>
+    </div>}
+    </>
   )
 }
 

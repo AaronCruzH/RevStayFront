@@ -69,7 +69,11 @@ function RegisterRoom() {
 
     const navigate = useNavigate()
 
+    const sessionRole = useContext(authContext)?.token
   return (
+
+    <>
+    {sessionRole == "ADMIN" &&
     <div>
         <button onClick={()=>navigate("/rooms")}>Back</button>
         <br/>
@@ -102,7 +106,8 @@ function RegisterRoom() {
         <br/>
         <br/>
         <button onClick={registerRoom}>Register</button>
-    </div>
+    </div>}
+    </>
   )
 }
 

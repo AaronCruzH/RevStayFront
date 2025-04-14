@@ -13,6 +13,7 @@ let changeRoomIDValue = (e: ChangeEvent<HTMLInputElement>) => {
 }
 
 const sessionToken = useContext(authContext)?.token
+const sessionRole = useContext(authContext)?.role
 const navigate = useNavigate()
 
 const [roomWasFound, setRoomWasFound] = useState(false)
@@ -103,6 +104,7 @@ async function searchRoom(): Promise<void> {
 
   return (
     <>
+    {sessionRole == "ADMIN" &&
     <div>
            <button onClick={()=>navigate("/rooms")}>Back</button>
         <br/>
@@ -114,7 +116,7 @@ async function searchRoom(): Promise<void> {
       <br/>
       <button onClick={searchRoom}>Search</button>
     </div>
-
+}
 { roomWasFound &&
     <div>
       <br/>
