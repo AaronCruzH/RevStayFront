@@ -8,7 +8,7 @@ function Nav() {
         <li><Link to='/private/hotels'>Hotels</Link></li>
         <li><Link to='/login'>Login</Link></li>
         <li><Link to='/register'>Register</Link></li>
-        <li><Link to='/rooms'>Rooms</Link></li>
+        <li><Link to='/rooms'>Room management</Link></li>
         <li><Link to='/reservations'>Reservations</Link></li>
       </ul>
     </div>
