@@ -3,6 +3,7 @@ import './App.css'
 import Courses from './components/courses/Courses'
 import Nav from './components/nav/Nav'
 import Login from './components/login/Login'
+import Register from './components/register/Register'
 import { HomePrivate } from './components/Layouts/HomePrivate'
 import { HotelsLayout } from './components/hotels/HotelsLayout'
 import { HotelsAmenitesLayout } from './components/hotels/amenities/HotelsAmenitesLayout'
@@ -40,6 +41,7 @@ function App() {
       <Routes> 
         <Route path='/'/>
         <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
 
         <Route path="rooms" element={<Rooms />} /> 
         <Route path="rooms/register" element={<RegisterRoom />} /> 
