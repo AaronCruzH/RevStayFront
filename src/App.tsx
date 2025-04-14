@@ -16,6 +16,7 @@ import { AddHotelImage } from './components/hotels/images/AddHotelImage'
 import { createContext, useState } from 'react'
 import Rooms from './components/Rooms/Rooms'
 import RegisterRoom from './components/Rooms/RegisterRoom'
+import { ReservationsAdmin } from './components/reservations/ReservationsAdmin'
 
 export interface AuthContextType{
   role: "USER"|"OWNER"|"ADMIN" | "UNAUTHENTICATED"
@@ -56,6 +57,8 @@ function App() {
               <Route path="hotels/:hotelId/amenities/:hotelAmenityId/update" element={<UpdateHotelAmenity />} />
               <Route path="*" element={<h1>404 Not Found</h1>} />
             </Route>
+
+          <Route path='reservations' element={<ReservationsAdmin />} />
       </Routes>
       
       

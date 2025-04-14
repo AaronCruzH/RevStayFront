@@ -1,0 +1,99 @@
+.container {
+    font-family: sans-serif;
+    padding: 20px;
+  }
+  
+  .searchForm {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .formRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  
+  .formRow label {
+    width: 120px;
+    margin-right: 10px;
+  }
+  
+  .formRow input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+  }
+  
+  .formRow button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .formRow button:last-child {
+    background-color: #6c757d;
+  }
+
+  .formGroup {
+    margin-right: 10px;
+  }
+  
+  .searchResults {
+    margin-top: 20px;
+  }
+  
+  .searchResults table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .searchResults th,
+  .searchResults td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .searchResults th {
+    background-color: #f2f2f2;
+  }
+  
+  .searchResults tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .searchResults button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .searchResults button:first-child {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .searchResults button:nth-child(2) {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .searchResults button:last-child {
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    border-radius: 4px;
+  }
