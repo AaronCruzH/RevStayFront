@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios, { AxiosRequestConfig, Method } from "axios";
+import { authContext } from "../App";
 
 axios.defaults.baseURL = "http://localhost:8080/";
 
@@ -16,10 +17,13 @@ export const useAxiosFetch = (params: AxiosFetchParams) => {
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(params.executeImmediately !== false);
 
+  const token = useContext(authContext)?.token;
+
 
   const fetchData = async (): Promise<void> => {
     try {
       let config: AxiosRequestConfig = {
+        headers: { Authorization: `Bearer ${token}` },
         url: params.url,
         method: params.method,
         withCredentials: true,
