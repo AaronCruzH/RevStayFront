@@ -125,7 +125,7 @@ function RegisterRoom() {
   const [roomNumber, setRoomNumber] = useState('')
   const [roomCapacity, setRoomCapacity] = useState('')
   const [price, setPrice] = useState('')
-  const [roomType, setRoomType] = useState('Standard')
+  const [roomType, setRoomType] = useState('Single')
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -169,8 +169,11 @@ function RegisterRoom() {
     // Set submitting state
     setIsSubmitting(true)
     
+    let roomTypeUpper = roomType
+    roomTypeUpper=roomTypeUpper.toUpperCase()
+    console.log(roomTypeUpper)
     let room: IRoom = {
-      roomType: roomType,
+      roomType: roomTypeUpper,
       capacity: Number(roomCapacity),
       roomNumber: Number(roomNumber),
       price: Number(price),
@@ -196,12 +199,12 @@ function RegisterRoom() {
       setRoomNumber('')
       setRoomCapacity('')
       setPrice('')
-      setRoomType('Standard')
+      setRoomType('Single')
       
       // Redirect after short delay
-      setTimeout(() => {
+      /*setTimeout(() => {
         navigate("/rooms")
-      }, 2000)
+      }, 2000)*/
       
     } catch (err: any) {
       console.error(err)
@@ -217,12 +220,9 @@ function RegisterRoom() {
   
   // Room type options
   const roomTypes = [
-    'Standard',
-    'Deluxe',
-    'Suite',
-    'Executive',
-    'Family',
-    'Single'
+    'Single',
+    'Double',
+    'Suite'
   ]
   
   return (
