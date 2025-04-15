@@ -1,0 +1,232 @@
+/* Navbar.css */
+/* Navbar.css - Material Design Theme */
+.navbar {
+    background-color: #ffffff;
+    height: 64px; /* Material standard app bar height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 4; /* Material elevation level 4 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Material standard easing */
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2), 
+                0 4px 5px 0 rgba(0,0,0,0.14), 
+                0 1px 10px 0 rgba(0,0,0,0.12); /* Material elevation shadow */
+  }
+  
+  .navbar.scrolled {
+    box-shadow: 0 4px 5px -2px rgba(0,0,0,0.2), 
+                0 7px 10px 1px rgba(0,0,0,0.14), 
+                0 2px 16px 1px rgba(0,0,0,0.12); /* Material elevation 6 */
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1280px; /* Material standard grid width */
+    padding: 0 16px; /* Material standard spacing */
+  }
+  
+  .navbar-logo {
+    color: #212121;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 64px;
+    padding: 8px 0;
+  }
+  
+  .logo-image {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+  }
+  
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-item {
+    margin: 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-link {
+    color: #424242;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.0892857143em; /* Material typography spec */
+    text-transform: uppercase; /* Material buttons are uppercase */
+    padding: 0 16px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+  
+  .nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.04); /* Material hover state */
+    color: #1976d2; /* Material primary blue */
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #1976d2; /* Material primary blue */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%);
+  }
+  
+  .nav-link:hover::after {
+    width: calc(100% - 32px);
+  }
+  
+  /* Hamburger menu icon - Material style */
+  .menu-icon {
+    display: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .menu-icon:hover {
+    background-color: rgba(0, 0, 0, 0.04); /* Material hover state */
+  }
+  
+  .hamburger {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4px 0;
+  }
+  
+  .hamburger span {
+    display: block;
+    height: 2px;
+    width: 24px;
+    background-color: #424242;
+    border-radius: 1px;
+    transform-origin: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  
+  /* Material Ripple Effect */
+  .ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+    animation: ripple 0.6s linear;
+    transform: scale(0);
+  }
+  
+  @keyframes ripple {
+    to {
+      transform: scale(2.5);
+      opacity: 0;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .navbar {
+      height: 60px;
+    }
+    
+    .nav-item {
+      height: 60px;
+    }
+  
+    .navbar-logo {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  
+    .menu-icon {
+      display: block;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      z-index: 10;
+    }
+  
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 60px;
+      left: -100%;
+      opacity: 1;
+      transition: all 0.5s ease;
+      margin: 0;
+      padding: 1rem 0;
+      background-color: #ffffff;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+  
+    .nav-menu.active {
+      left: 0;
+      opacity: 1;
+      z-index: 1;
+    }
+  
+    .nav-item {
+      margin: 0;
+      width: 100%;
+      height: 60px;
+    }
+  
+    .nav-link {
+      display: block;
+      width: 100%;
+      padding: 1rem 0;
+      text-align: center;
+      color: #2d3748;
+    }
+  
+    .nav-link:hover {
+      background-color: #edf2f7;
+    }
+  }

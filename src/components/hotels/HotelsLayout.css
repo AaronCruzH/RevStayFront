@@ -1,0 +1,151 @@
+/* HotelsLayout.css - Material Design */
+.layout-container {
+    max-width: 1280px;
+    margin: 24px auto 48px;
+    padding: 0 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #424242;
+  }
+  
+  .layout-header {
+    margin-bottom: 24px;
+  }
+  
+  .layout-title {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: #212121;
+    margin: 0 0 16px 0;
+  }
+  
+  .layout-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #757575;
+    margin: 4px 0 16px 0;
+  }
+  
+  /* Role Switch Styles */
+  .role-switch {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+  
+  .role-switch-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #757575;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  .role-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .role-button {
+    background-color: transparent;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #757575;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .role-button:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  
+  .role-button.active {
+    background-color: #1976d2;
+    color: white;
+    border-color: #1976d2;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 
+                0 3px 1px -2px rgba(0, 0, 0, 0.12), 
+                0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Ripple Effect */
+  .role-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(0, 0);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(100, 100);
+      opacity: 0;
+    }
+  }
+  
+  .role-button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+  }
+  
+  .content-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    overflow: hidden;
+  }
+  
+  /* Role icons */
+  .role-icon {
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 600px) {
+    .layout-title {
+      font-size: 1.5rem;
+    }
+    
+    .role-switch {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+  
+  /* Transition effects */
+  .role-content-transition {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
