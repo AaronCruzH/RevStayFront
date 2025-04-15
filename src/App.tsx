@@ -47,6 +47,7 @@ function App() {
         <Route path="rooms/register" element={<RegisterRoom />} /> 
         
         <Route path="private" element={<HomePrivate />}>
+            {/* Private route for authenticated users */}
               <Route index element={<HotelsLayout />} /> {/* Default route for private section */}
               <Route path="hotels" element={<HotelsLayout />} /> 
               <Route path="hotels/new" element={<AddHotel />} /> 
@@ -58,7 +59,7 @@ function App() {
               <Route path="hotels/:hotelId/amenities/new" element={<AddHotelAmenity />} />
               <Route path="hotels/:hotelId/amenities/:hotelAmenityId/update" element={<UpdateHotelAmenity />} />
               <Route path="*" element={<h1>404 Not Found</h1>} />
-            </Route>
+          </Route>
 
           <Route path='reservations' element={<ReservationsAdmin />} />
       </Routes>

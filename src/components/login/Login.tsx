@@ -79,9 +79,9 @@ function Login() {
 
 export default Login*/
 import axios from "axios"
-import { ChangeEvent, useContext, useState } from "react"
+import { ChangeEvent, useContext, useEffect, useState } from "react"
 import { IUser } from "../../interfaces/IUser"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { authContext } from "../../App"
 import "./Login.css"
 
@@ -97,7 +97,16 @@ function Login() {
   const roleReference = useContext(authContext)
   // To navigate users to another page we'll use a useNavigate hook
   const navigate = useNavigate();
-  
+  const location = useLocation();
+
+  useEffect(() => {
+    const errorAuth = location.state?.error as string;
+    if (errorAuth) {
+      setError(true);
+      setErrorMessage(errorAuth);
+    }
+  }, [location.state?.error]);
+
   let login = async () => {
     // Reset error state
     setError(false)
