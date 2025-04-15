@@ -115,6 +115,12 @@ function Rooms() {
       <div className="rooms-header">
         <h1 className="rooms-title">Rooms Management</h1>
         <button 
+          onClick={() => navigate('/rooms/update')} 
+          className="register-room-button"
+        >
+          Update room
+          </button>
+        <button 
           onClick={() => navigate('/rooms/register')} 
           className="register-room-button"
         >

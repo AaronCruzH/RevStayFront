@@ -1,15 +1,15 @@
-import { ChangeEvent, useContext, useState } from "react"
+import { ChangeEvent, useContext, useEffect, useState } from "react"
 import { IRoom } from "../../interfaces/IRoom"
 import { authContext } from "../../App"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
 function UpdateRoom() {
-    const [roomID, setRoomID] = useState(0)
+    const [roomID, setRoomID] = useState('')
     const [currentRoomID, setCurrentRoomID] = useState(0)
 
 let changeRoomIDValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setRoomID(Number(e.target.value))
+    setRoomID(e.target.value)
 }
 
 const sessionToken = useContext(authContext)?.token
@@ -17,8 +17,16 @@ const sessionRole = useContext(authContext)?.role
 const navigate = useNavigate()
 
 const [roomWasFound, setRoomWasFound] = useState(false)
+const [isSubmitting, setIsSubmitting] = useState(false)
+const [isUpdating, setIsUpdating] = useState(false)
+const [success, setSuccess] = useState<string | null>(null)
+
+
 
 async function searchRoom(): Promise<void> {
+  setIsSubmitting(true)
+  setSuccess(null)
+ 
     try {
       const response = await axios.get<IRoom>(
         `http://localhost:8080/rooms/id/${roomID}`,
@@ -37,16 +45,19 @@ async function searchRoom(): Promise<void> {
       setRoomCapacity(String(room.capacity))
       setRoomType(String(room.roomType))
       setCurrentRoomID(room.roomID)
-      setRoomWasFound(true);
-  
+      setRoomWasFound(true);  
     } catch (error) {
       console.log(error)
       console.log("Caracoles")
       setRoomWasFound(false)
+    } finally{
+    setIsSubmitting(false)
     }
   }
 
   async function updateRoom(): Promise<void> {
+    setIsUpdating(true)
+    setSuccess(null)
     try {
 
         let updatedRoom : IRoom = {
@@ -69,10 +80,15 @@ async function searchRoom(): Promise<void> {
   
       const updatedRoomResult = response.data;
       console.log(updatedRoomResult)
+      setSuccess("Room updated successfully!")
+
   
     } catch (error) {
+      setSuccess(null)
       console.log(error)
       console.log("Caracoles")
+    }finally{
+      setIsUpdating(false)
     }
   }
   
@@ -96,57 +112,146 @@ async function searchRoom(): Promise<void> {
         setPrice(e.target.value)
     }
 
-    const [roomType, setRoomType] = useState('')
+    const [roomType, setRoomType] = useState('Single')
 
     let changeRoomType = (e: ChangeEvent<HTMLInputElement>) =>{
         setRoomType(e.target.value)
     }
+    
+    const roomTypes = [
+      'SINGLE',
+      'DOUBLE',
+      'SUITE'
+    ]
 
+    useEffect(() => {
+      setSuccess(null)
+    }, [sessionToken])
   return (
+    
     <>
     {sessionRole == "ADMIN" &&
-    <div>
-           <button onClick={()=>navigate("/rooms")}>Back</button>
+    <div className="register-room-container">
+    <div className="register-room-header">
+      <br/>
+      <br/>
+           <button 
+          className="back-button" 
+          onClick={() => navigate("/rooms")}>
+          ← Back to Rooms
+        </button>
         <br/>
         <br/>
         <br/>
-      <label>Room ID <input type="text" value={roomID} onChange={changeRoomIDValue}></input></label>
-      <br/>
-      <br/>
-      <br/>
-      <button onClick={searchRoom}>Search</button>
+        <h1 className="register-room-title">Update Room</h1>
+        </div>
+      <div className="room-form">
+      <label htmlFor="roomID">Room ID</label>
+      <input 
+            id="roomID"
+            className="form-control"
+            type="text" 
+            value={roomID}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setRoomID(e.target.value)}
+            placeholder="Enter the room ID"
+          />
+
+          <div className="form-actions">
+      <button 
+            className="submit-button" 
+            onClick={searchRoom}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Searching..." : "Search"}
+          </button>
+      </div>
+      </div>
     </div>
 }
 { roomWasFound &&
-    <div>
+    <div className="register-room-container">
       <br/>
       <br/>
-      <label>
-        Room number <input type="text" value={roomNumber} onChange={changeRoomNumber}/>
+      <div className="room-form">
+      <div className="form-group">
+        <h2>Updating room with ID: {currentRoomID}</h2>
+        <br/>
+      <label htmlFor="roomNumber">
+        Room number
       </label>
+      <input 
+            id="roomNumber"
+            className="form-control"
+            type="text" 
+            value={roomNumber}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setRoomNumber(e.target.value)}
+            placeholder="Enter the room number"
+          />
+      </div>
+      </div>
       <br/>
       <br/>
-      <label>
-        Capacity <input type="text" value={roomCapacity} onChange={changeCapacity}/>
+      <div className="form-group">
+        <br/>
+      <label htmlFor="roomCapacity">
+        Room capacity
       </label>
+      <input 
+            id="roomCapacity"
+            className="form-control"
+            type="text" 
+            value={roomCapacity}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setRoomCapacity(e.target.value)}
+            placeholder="Enter the room max capacity"
+          />
+      </div>
       <br/>
       <br/>
-      <label>
-        Price <input type="text" value={price} onChange={changePrice}/>
+      <div className="form-group">
+        <br/>
+      <label htmlFor="roomCapacity">
+        Room price
       </label>
+      <input 
+            id="roomPrice"
+            className="form-control"
+            type="text" 
+            value={price}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setPrice(e.target.value)}
+            placeholder="Enter the room's price"
+          />
+      </div>
       <br/>
       <br/>
-      <label>
-        Room type <input type="text" value={roomType} onChange={changeRoomType}/>
-      </label>
+      <div className="form-group">
+          <label htmlFor="roomType">Room Type</label>
+          <select 
+            id="roomType"
+            className="form-select"
+            value={roomType}
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => setRoomType(e.target.value)}
+          >
+            {roomTypes.map(type => (
+              <option key={type} value={type}>{type}</option>
+            ))}
+          </select>
+        </div>
+        {success && <div className="success-message">✓ {success}</div>}
       <br/>
         <br/>
         <br/>
+        <div className="form-actions">
+      <button 
+            className="submit-button" 
+            onClick={updateRoom}
+            disabled={isUpdating}
+          >
+            {isUpdating ? "Updating..." : "Update"}
+          </button>
         <button onClick={updateRoom}>Update</button>
     </div>
+    </div>
 }
-
-
     </>
   )
 }
