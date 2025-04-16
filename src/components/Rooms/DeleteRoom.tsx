@@ -11,6 +11,7 @@ function DeleteRoom() {
     const [roomWasFound, setRoomWasFound] = useState(false)
     const [success, setSuccess] = useState<string | null>(null)
     const [foundRoom, setFoundRoom] = useState<IRoom>()
+    const [isDeleting, setIsDeleting] = useState(false)
 
 
     const sessionToken = useContext(authContext)?.token
@@ -19,6 +20,7 @@ function DeleteRoom() {
     async function searchRoom(): Promise<void> {
         setIsSubmitting(true)
         setSuccess(null)
+        setRoomWasFound(false)
           try {
             const response = await axios.get<IRoom>(
               `http://localhost:8080/rooms/id/${roomID}`,
@@ -40,6 +42,16 @@ function DeleteRoom() {
           } finally{
           setIsSubmitting(false)
         }
+    }
+
+    async function DeleteRoom() {
+        setIsDeleting(false)
+        if(roomID==undefined)
+        {
+            console.log("Se intento mandar un unasigned al borrar")
+            return
+        }
+        console.log("Borrado")
     }
 
     // Function to get appropriate class for room type
@@ -110,6 +122,15 @@ function DeleteRoom() {
                     />
                 </tbody>
             </table>
+        </div>
+        <div className="form-actions">
+            <button 
+                className="submit-button" 
+                onClick={DeleteRoom}
+                disabled={!(isDeleting || roomWasFound)}
+            >
+                {isDeleting ? "Deleting..." : "Delete"}
+            </button>
         </div>
     </>
   )
