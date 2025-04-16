@@ -10,6 +10,7 @@ function DeleteRoom() {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [roomWasFound, setRoomWasFound] = useState(false)
     const [success, setSuccess] = useState<string | null>(null)
+    const [fail, setFail] = useState<string | null>(null)
     const [foundRoom, setFoundRoom] = useState<IRoom>()
     const [isDeleting, setIsDeleting] = useState(false)
 
@@ -17,9 +18,16 @@ function DeleteRoom() {
     const sessionToken = useContext(authContext)?.token
     const navigate = useNavigate()
 
+    function Clear(): void{
+        setRoomID('')
+        setRoomWasFound(false)
+        setFoundRoom(undefined)
+      }
+
     async function searchRoom(): Promise<void> {
         setIsSubmitting(true)
         setSuccess(null)
+        setFail(null)
         setRoomWasFound(false)
           try {
             const response = await axios.get<IRoom>(
@@ -35,10 +43,11 @@ function DeleteRoom() {
             console.log(room)
             setRoomWasFound(true);  
             setFoundRoom(response.data)
-          } catch (error) {
+        } catch (error) {
             console.log(error)
             console.log("Caracoles")
             setRoomWasFound(false)
+            setFail("Something went worng.")
           } finally{
           setIsSubmitting(false)
         }
@@ -46,11 +55,6 @@ function DeleteRoom() {
 
     async function DeleteRoom() {
         setIsDeleting(false)
-        if(roomID==undefined)
-        {
-            console.log("Se intento mandar un unasigned al borrar")
-            return
-        }
         try{
             setIsDeleting(true)
         const response = await axios.delete<IRoom>(
@@ -64,9 +68,14 @@ function DeleteRoom() {
 
           console.log(response.status)
           console.log(response.statusText)
+          const deletedRoomID = roomID
+          setSuccess(`Room with ID ${deletedRoomID} deleted successfully!`)
+          Clear()
         } catch(error){
             console.log(error)
+            console.log(error)
             console.log("Caracoles")
+            setFail("Something went worng.")
         } finally {
             setIsDeleting(false)
         }
@@ -108,7 +117,8 @@ function DeleteRoom() {
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setRoomID(e.target.value)}
                 placeholder="Enter the room ID"
             />
-
+            {success && <div className="success-message">✓ {success}</div>}
+            {fail && <div className="error-message">{fail}</div>}
             <div className="form-actions">
                 <button 
                     className="submit-button" 

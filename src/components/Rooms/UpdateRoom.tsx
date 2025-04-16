@@ -17,8 +17,6 @@ const [isSubmitting, setIsSubmitting] = useState(false)
 const [isUpdating, setIsUpdating] = useState(false)
 const [success, setSuccess] = useState<string | null>(null)
 
-
-
 async function searchRoom(): Promise<void> {
   setIsSubmitting(true)
   setSuccess(null)
