@@ -19,6 +19,7 @@ import Rooms from './components/Rooms/Rooms'
 import RegisterRoom from './components/Rooms/RegisterRoom'
 import UpdateRoom from './components/Rooms/UpdateRoom'
 import { ReservationsAdmin } from './components/reservations/ReservationsAdmin'
+import DeleteRoom from './components/Rooms/DeleteRoom'
 
 export interface AuthContextType{
   role: "USER"|"OWNER"|"ADMIN" | "UNAUTHENTICATED"
@@ -47,6 +48,7 @@ function App() {
         <Route path="rooms" element={<Rooms />} /> 
         <Route path="rooms/register" element={<RegisterRoom />} /> 
         <Route path="rooms/update" element={<UpdateRoom />} /> 
+        <Route path="rooms/delete" element={<DeleteRoom />} /> 
         
         <Route path="private" element={<HomePrivate />}>
             {/* Private route for authenticated users */}
@@ -62,7 +64,6 @@ function App() {
               <Route path="hotels/:hotelId/amenities/:hotelAmenityId/update" element={<UpdateHotelAmenity />} />
               <Route path="*" element={<h1>404 Not Found</h1>} />
           </Route>
-
           <Route path='reservations' element={<ReservationsAdmin />} />
       </Routes>
       

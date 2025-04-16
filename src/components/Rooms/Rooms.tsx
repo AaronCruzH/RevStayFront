@@ -120,11 +120,17 @@ function Rooms() {
         >
           Update room
           </button>
-        <button 
+          <button 
           onClick={() => navigate('/rooms/register')} 
           className="register-room-button"
         >
           <span>+</span> Add New Room
+        </button>
+        <button 
+          onClick={() => navigate('/rooms/delete')} 
+          className="register-room-button"
+        >
+          <span>-</span> Delete Room
         </button>
       </div>
       

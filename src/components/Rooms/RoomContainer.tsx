@@ -32,8 +32,8 @@ function RoomContainer(props: ExtendedRoomProps) {
           {props.roomType}
         </span>
       </td>
-      <td className="price-cell">${props.price.toFixed(2)}</td>
-      <td>{props.hotel.hotelId}</td>
+      <td className="price-cell">${props.price?.toFixed(2)}</td>
+      <td>{props.hotel?.hotelId}</td>
     </tr>
   )
 }

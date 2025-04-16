@@ -8,10 +8,6 @@ function UpdateRoom() {
     const [roomID, setRoomID] = useState('')
     const [currentRoomID, setCurrentRoomID] = useState(0)
 
-let changeRoomIDValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setRoomID(e.target.value)
-}
-
 const sessionToken = useContext(authContext)?.token
 const sessionRole = useContext(authContext)?.role
 const navigate = useNavigate()
@@ -91,33 +87,15 @@ async function searchRoom(): Promise<void> {
       setIsUpdating(false)
     }
   }
-  
-
 
     const [roomNumber, setRoomNumber] = useState('')
 
-    let changeRoomNumber = (e: ChangeEvent<HTMLInputElement>) =>{
-        setRoomNumber(e.target.value)
-    }
-
     const [roomCapacity, setRoomCapacity] = useState('')
-
-    let changeCapacity = (e: ChangeEvent<HTMLInputElement>) =>{
-        setRoomCapacity(e.target.value)
-    }
 
     const [price, setPrice] = useState('')
 
-    let changePrice = (e: ChangeEvent<HTMLInputElement>) =>{
-        setPrice(e.target.value)
-    }
-
     const [roomType, setRoomType] = useState('Single')
 
-    let changeRoomType = (e: ChangeEvent<HTMLInputElement>) =>{
-        setRoomType(e.target.value)
-    }
-    
     const roomTypes = [
       'SINGLE',
       'DOUBLE',

@@ -1,10 +1,10 @@
 import { IHotel } from "./IHotel";
 
 export interface IRoomProps{
-    roomID:number,
+    roomID?:number | undefined,
     hotel?: IHotel | null | undefined,
-    capacity:number;
-    roomNumber:number,
-    price:number,
-    roomType:string
+    capacity?:number | undefined;
+    roomNumber?:number|undefined,
+    price?:number|undefined,
+    roomType?:string|undefined
 }
