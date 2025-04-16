@@ -51,7 +51,25 @@ function DeleteRoom() {
             console.log("Se intento mandar un unasigned al borrar")
             return
         }
-        console.log("Borrado")
+        try{
+            setIsDeleting(true)
+        const response = await axios.delete<IRoom>(
+            `http://localhost:8080/rooms/${roomID}`,
+            {
+              headers: {
+                Authorization: `Bearer ${sessionToken}`,
+              },
+            }
+          );
+
+          console.log(response.status)
+          console.log(response.statusText)
+        } catch(error){
+            console.log(error)
+            console.log("Caracoles")
+        } finally {
+            setIsDeleting(false)
+        }
     }
 
     // Function to get appropriate class for room type
