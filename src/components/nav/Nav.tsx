@@ -25,7 +25,8 @@ import { authContext } from "../../App"
  
 
 function Nav() {
-  const roleReference = useContext(authContext)
+  //const roleReference = useContext(authContext)
+  const roleReference = useContext(authContext)?.role
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -98,7 +99,7 @@ function Nav() {
               Register
             </Link>
           </li>
-          {roleReference?.role === "ADMIN" || roleReference?.role === "OWNER" &&
+          {(roleReference === "ADMIN" || roleReference === "OWNER") &&
           <li className="nav-item">
             <Link to="/rooms" className="nav-link" onClick={closeMenu}>
               Rooms
