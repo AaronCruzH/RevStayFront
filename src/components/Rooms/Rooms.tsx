@@ -65,6 +65,7 @@ import { useNavigate } from "react-router-dom"
 import "./RoomTable.css"
 
 function Rooms() {
+  const sessionRole = useContext(authContext)?.role
   const [rooms, setRooms] = useState<IRoom[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -73,6 +74,9 @@ function Rooms() {
   const navigate = useNavigate()
   
   useEffect(() => {
+    if(sessionRole != "ADMIN" && sessionRole != "OWNER"){
+      return
+    }
     setLoading(true)
     axios.get<IRoom[]>("http://localhost:8080/rooms",
       {
