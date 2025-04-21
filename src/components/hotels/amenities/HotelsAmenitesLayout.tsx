@@ -84,7 +84,7 @@ export const HotelsAmenitesLayout = () => {
   const location = useLocation();
   const hotelName = location.state?.name as string;
   
-  const [data, error, loading, fetchData] = useAxiosFetch({
+  const [data, error, loading] = useAxiosFetch({
     method: 'GET',
     url: `/hotels/${hotelId}/amenities`,
     params: null,

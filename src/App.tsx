@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import Courses from './components/courses/Courses'
 import Nav from './components/nav/Nav'
 import Login from './components/login/Login'
 import Register from './components/register/Register'

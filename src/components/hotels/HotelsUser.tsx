@@ -224,7 +224,7 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { IRoomFilters } from "../../interfaces/IRoomFilters";
 import "./HotelsUser.css"; // Make sure to update the CSS file name
 import { Error } from "../generics/Error";
-import { Loading } from "../generics/Loading";
+//import { Loading } from "../generics/Loading";
 import { authContext } from "../../App";
 import { IReservation } from "../../interfaces/IReservation";
 import axios from "axios";

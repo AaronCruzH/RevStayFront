@@ -140,7 +140,7 @@ export const ReservationsAdmin = () => {
       setReservations(prevReservations => 
         prevReservations.map(reservation => 
           reservation.reservationId === reservationId 
-            ? { ...reservation, reservationStatus: "CANCELLED" } 
+            ? { ...reservation, reservationStatus: "CANCELED" } 
             : reservation
         )
       );
@@ -165,7 +165,7 @@ export const ReservationsAdmin = () => {
       setReservations(prevReservations => 
         prevReservations.map(reservation => 
           reservation.reservationId === reservationId 
-            ? { ...reservation, reservationStatus: "CANCELLED" } 
+            ? { ...reservation, reservationStatus: "CANCELED" } 
             : reservation
         )
       );
@@ -258,7 +258,7 @@ export const ReservationsAdmin = () => {
               {filteredReservations.map((reservation) => (
                 <tr key={reservation.reservationId}>
                   <td className="col-id">{reservation.reservationId}</td>
-                  <td>{reservation.user?.id}</td>
+                  <td>{reservation.user?.userID}</td>
                   <td>{reservation.room?.roomID}</td>
                   <td>{reservation.totalGuests}</td>
                   <td>{new Date(reservation.checkIn).toLocaleDateString()}</td>
@@ -301,7 +301,7 @@ export const ReservationsAdmin = () => {
                         </button>
                       )}
                       
-                      {(reservation.reservationStatus === "CANCELLED" || 
+                      {(reservation.reservationStatus === "CANCELED" || 
                         reservation.reservationStatus === "COMPLETED") && (
                         <span>No actions available</span>
                       )}
