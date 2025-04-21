@@ -31,7 +31,7 @@ function DeleteRoom() {
         setRoomWasFound(false)
           try {
             const response = await axios.get<IRoom>(
-              `http://localhost:8080/rooms/id/${roomID}`,
+              `http://3.85.92.181:8080/rooms/id/${roomID}`,
               {
                 headers: {
                   Authorization: `Bearer ${sessionToken}`,
@@ -58,7 +58,7 @@ function DeleteRoom() {
         try{
             setIsDeleting(true)
         const response = await axios.delete<IRoom>(
-            `http://localhost:8080/rooms/${roomID}`,
+            `http://3.85.92.181:8080/rooms/${roomID}`,
             {
               headers: {
                 Authorization: `Bearer ${sessionToken}`,

@@ -11,7 +11,7 @@ export const ReservationsAdmin = () => {
     useEffect(() => {
         if (!sessionToken) return;
 
-        axios.get<IReservation[]>("http://localhost:8080/reservations", {
+        axios.get<IReservation[]>("http://3.85.92.181:8080/reservations", {
             headers: { Authorization: `Bearer ${sessionToken}` }
         })
         .then(res => {
@@ -88,7 +88,7 @@ export const ReservationsAdmin = () => {
     if (!sessionToken) return;
     
     setLoading(true);
-    axios.get<IReservation[]>("http://localhost:8080/reservations", {
+    axios.get<IReservation[]>("http://3.85.92.181:8080/reservations", {
       headers: { Authorization: `Bearer ${sessionToken}` }
     })
     .then(res => {
@@ -106,7 +106,7 @@ export const ReservationsAdmin = () => {
   const handleAcceptReservation = async (reservationId: number) => {
     try {
       await axios.put(
-        `http://localhost:8080/reservations/${reservationId}/confirm`,
+        `http://3.85.92.181:8080/reservations/${reservationId}/confirm`,
         {},
         { headers: { Authorization: `Bearer ${sessionToken}` } }
       );
@@ -131,7 +131,7 @@ export const ReservationsAdmin = () => {
     
     try {
       await axios.put(
-        `http://localhost:8080/reservations/${reservationId}/reject`,
+        `http://3.85.92.181:8080/reservations/${reservationId}/reject`,
         {},
         { headers: { Authorization: `Bearer ${sessionToken}` } }
       );
@@ -156,7 +156,7 @@ export const ReservationsAdmin = () => {
     
     try {
       await axios.put(
-        `http://localhost:8080/reservations/${reservationId}/cancel`,
+        `http://3.85.92.181:8080/reservations/${reservationId}/cancel`,
         {},
         { headers: { Authorization: `Bearer ${sessionToken}` } }
       );

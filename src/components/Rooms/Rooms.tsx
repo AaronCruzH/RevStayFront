@@ -15,7 +15,7 @@ const sessionRole = useContext(authContext)?.role
     if(sessionRole != "ADMIN"){
       return
     }
-    axios.get<IRoom[]>("http://localhost:8080/rooms",
+    axios.get<IRoom[]>("http://3.85.92.181:8080/rooms",
       {
         headers:{
           Authorization:`Bearer ${sessionToken}`
@@ -83,7 +83,7 @@ function Rooms() {
   
   useEffect(() => {
     setLoading(true)
-    axios.get<IRoom[]>("http://localhost:8080/rooms",
+    axios.get<IRoom[]>("http://3.85.92.181:8080/rooms",
       {
         headers: {
           Authorization: `Bearer ${sessionToken}`

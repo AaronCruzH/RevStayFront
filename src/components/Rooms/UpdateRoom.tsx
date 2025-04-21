@@ -23,7 +23,7 @@ async function searchRoom(): Promise<void> {
  
     try {
       const response = await axios.get<IRoom>(
-        `http://localhost:8080/rooms/id/${roomID}`,
+        `http://3.85.92.181:8080/rooms/id/${roomID}`,
         {
           headers: {
             Authorization: `Bearer ${sessionToken}`,
@@ -64,7 +64,7 @@ async function searchRoom(): Promise<void> {
         }
 
       const response = await axios.put<IRoom>(
-        `http://localhost:8080/rooms/update/${currentRoomID}`, updatedRoom,
+        `http://3.85.92.181:8080/rooms/update/${currentRoomID}`, updatedRoom,
         {
           headers: {
             Authorization: `Bearer ${sessionToken}`,

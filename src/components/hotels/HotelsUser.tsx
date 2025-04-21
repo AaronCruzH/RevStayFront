@@ -34,7 +34,7 @@ export const HotelsUser = () => {
       };
     
     axios.post<IReservation[]>(
-      "http://localhost:8080/reservations",
+      "http://3.85.92.181:8080/reservations",
       body,  // Segundo argumento: los datos que quieres enviar (el cuerpo)
       {
         headers: {
@@ -263,7 +263,7 @@ export const HotelsUser = () => {
     };
   
     axios.post<IReservation[]>(
-      "http://localhost:8080/reservations",
+      "http://3.85.92.181:8080/reservations",
       body,
       {
         headers: {

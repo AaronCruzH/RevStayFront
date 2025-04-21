@@ -51,7 +51,7 @@ function RegisterRoom() {
             roomID: 0
         }
 
-        axios.post<IRoom>(`http://localhost:8080/rooms/register/${hotelId}`, room,
+        axios.post<IRoom>(`http://3.85.92.181:8080/rooms/register/${hotelId}`, room,
             {
               headers:{
                 Authorization:`Bearer ${sessionToken}`
@@ -183,7 +183,7 @@ function RegisterRoom() {
     
     try {
       const response = await axios.post<IRoom>(
-        `http://localhost:8080/rooms/register/${hotelId}`, 
+        `http://3.85.92.181:8080/rooms/register/${hotelId}`, 
         room,
         {
           headers: {
