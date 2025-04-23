@@ -106,7 +106,7 @@ export const ReservationsAdmin = () => {
   const handleAcceptReservation = async (reservationId: number) => {
     try {
       await axios.put(
-        `http://3.85.92.181:8080/reservations/confirm/${reservationId}`,
+        `http://3.85.92.181:8080/reservations/accept/${reservationId}`,
         {},
         { headers: { Authorization: `Bearer ${sessionToken}` } }
       );
