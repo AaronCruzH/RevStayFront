@@ -34,7 +34,7 @@ export const HotelsUser = () => {
       };
     
     axios.post<IReservation[]>(
-      "http://localhost:8080/reservations",
+      "http://3.85.92.181:8080/reservations",
       body,  // Segundo argumento: los datos que quieres enviar (el cuerpo)
       {
         headers: {
@@ -224,7 +224,7 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { IRoomFilters } from "../../interfaces/IRoomFilters";
 import "./HotelsUser.css"; // Make sure to update the CSS file name
 import { Error } from "../generics/Error";
-import { Loading } from "../generics/Loading";
+//import { Loading } from "../generics/Loading";
 import { authContext } from "../../App";
 import { IReservation } from "../../interfaces/IReservation";
 import axios from "axios";
@@ -263,7 +263,7 @@ export const HotelsUser = () => {
     };
   
     axios.post<IReservation[]>(
-      "http://localhost:8080/reservations",
+      "http://3.85.92.181:8080/reservations",
       body,
       {
         headers: {

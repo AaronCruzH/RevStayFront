@@ -30,7 +30,7 @@ function Login() {
 
         // We need to send an axios post request
         try{
-            let res = await axios.post<IUser>('http://localhost:8080/api/auth/login', 
+            let res = await axios.post<IUser>('http://3.85.92.181:8080/api/auth/login', 
                 {email, password} // This is the body of our request
                 // We don't need to add on the Content-Type=application/json since axios implicitly works with json
                 // We can add "withCredentials:true" => This allows use to keep track of the JSESSIONID which holds
@@ -128,7 +128,7 @@ function Login() {
     
     // We need to send an axios post request
     try {
-      let res = await axios.post<IUser>('http://localhost:8080/api/auth/login',
+      let res = await axios.post<IUser>('http://3.85.92.181:8080/api/auth/login',
         {email, password} // This is the body of our request
         // We don't need to add on the Content-Type=application/json since axios implicitly works with json
         // We can add "withCredentials:true" => This allows use to keep track of the JSESSIONID which holds

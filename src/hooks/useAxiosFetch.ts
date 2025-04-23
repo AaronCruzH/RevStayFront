@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import axios, { AxiosRequestConfig, Method } from "axios";
 import { authContext } from "../App";
 
-axios.defaults.baseURL = "http://localhost:8080/";
+axios.defaults.baseURL = "http://3.85.92.181:8080/";
 
 interface AxiosFetchParams {
   url: string;

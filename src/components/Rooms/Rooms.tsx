@@ -8,9 +8,14 @@ import { useNavigate } from "react-router-dom"
 function Rooms() {
   const [rooms, setRooms] = useState<IRoom[]>([])
 const sessionToken = useContext(authContext)?.token
+const sessionRole = useContext(authContext)?.role
 
   useEffect(()=>{
-    axios.get<IRoom[]>("http://localhost:8080/rooms",
+
+    if(sessionRole != "ADMIN"){
+      return
+    }
+    axios.get<IRoom[]>("http://3.85.92.181:8080/rooms",
       {
         headers:{
           Authorization:`Bearer ${sessionToken}`
@@ -29,8 +34,11 @@ const sessionToken = useContext(authContext)?.token
   const navigate = useNavigate()
 
   return (
+    <>
+    {sessionRole == "ADMIN" &&
     <div>
       <button onClick={()=>navigate('/rooms/register')}>Register new room</button>
+      <button onClick={()=>navigate('/rooms/update')}>Update room</button>
       <br/>
       <br/>
       <h1>Registered rooms</h1>
@@ -51,7 +59,8 @@ const sessionToken = useContext(authContext)?.token
         })
       }
 </table>
-    </div>
+    </div>}
+    </>
   )
 }
 
@@ -78,7 +87,7 @@ function Rooms() {
       return
     }
     setLoading(true)
-    axios.get<IRoom[]>("http://localhost:8080/rooms",
+    axios.get<IRoom[]>("http://3.85.92.181:8080/rooms",
       {
         headers: {
           Authorization: `Bearer ${sessionToken}`
@@ -110,10 +119,22 @@ function Rooms() {
       <div className="rooms-header">
         <h1 className="rooms-title">Rooms Management</h1>
         <button 
+          onClick={() => navigate('/rooms/update')} 
+          className="register-room-button"
+        >
+          Update room
+          </button>
+          <button 
           onClick={() => navigate('/rooms/register')} 
           className="register-room-button"
         >
           <span>+</span> Add New Room
+        </button>
+        <button 
+          onClick={() => navigate('/rooms/delete')} 
+          className="register-room-button"
+        >
+          <span>-</span> Delete Room
         </button>
       </div>
       

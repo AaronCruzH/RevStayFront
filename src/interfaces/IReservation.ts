@@ -10,5 +10,5 @@ export interface IReservation {
     checkOut: Date,
     createdAt: Date,
     total: number,
-    reservationStatus: 'PENDING' | 'ACCEPTED' | 'REJECTED' | 'CANCELED'
+    reservationStatus: 'PENDING' | 'ACCEPTED' | 'REJECTED' | 'CANCELED' | 'CONFIRMED' | 'COMPLETED'
 }

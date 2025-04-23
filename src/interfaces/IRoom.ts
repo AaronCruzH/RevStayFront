@@ -8,5 +8,5 @@ export interface IRoom {
     roomNumber: number;
     price: number;
     // Optional fields
-    hotel: IHotel | null; // Optional hotel object
+    hotel?: IHotel | null; // Optional hotel object
 }

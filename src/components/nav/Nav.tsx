@@ -1,6 +1,7 @@
 /*import { Link } from "react-router-dom"
 
 function Nav() {
+  const roleReference = useContext(authContext)
   return (
     <div>
       {/* Inside of here I will have a list of Links to various components }
@@ -8,7 +9,8 @@ function Nav() {
         <li><Link to='/private/hotels'>Hotels</Link></li>
         <li><Link to='/login'>Login</Link></li>
         <li><Link to='/register'>Register</Link></li>
-        <li><Link to='/rooms'>Rooms</Link></li>
+        {roleReference?.role === "ADMIN" &&
+        <li><Link to='/rooms'>Room management</Link></li>}
         <li><Link to='/reservations'>Reservations</Link></li>
       </ul>
     </div>
@@ -25,7 +27,6 @@ import { authContext } from "../../App"
  
 
 function Nav() {
-  //const roleReference = useContext(authContext)
   const roleReference = useContext(authContext)?.role
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);

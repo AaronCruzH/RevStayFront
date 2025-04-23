@@ -52,7 +52,7 @@ function Register() {
 
     // We need to send an axios post request
     try {
-      let res = await axios.post<IUser>('http://localhost:8080/api/auth/register',
+      let res = await axios.post<IUser>('http://3.85.92.181:8080/api/auth/register',
         { firstName, lastName, email, password } // This is the body of our request
       )
       console.log(res);
@@ -61,7 +61,7 @@ function Register() {
       if (res.status === 201) {
         // Auto-login after registration
         try {
-          let loginRes = await axios.post<IUser>('http://localhost:8080/api/auth/login',
+          let loginRes = await axios.post<IUser>('http://3.85.92.181:8080/api/auth/login',
             { email, password }
           )
           
@@ -216,7 +216,7 @@ function Register() {
 
     // We need to send an axios post request
     try {
-      let res = await axios.post<IUser>('http://localhost:8080/api/auth/register',
+      let res = await axios.post<IUser>('http://3.85.92.181:8080/api/auth/register',
         { firstName, lastName, email, password } // This is the body of our request
       )
       console.log(res);
@@ -225,7 +225,7 @@ function Register() {
       if (res.status === 201) {
         // Auto-login after registration
         try {
-          let loginRes = await axios.post<IUser>('http://localhost:8080/api/auth/login',
+          let loginRes = await axios.post<IUser>('http://3.85.92.181:8080/api/auth/login',
             { email, password }
           )
           

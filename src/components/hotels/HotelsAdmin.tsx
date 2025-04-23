@@ -158,7 +158,7 @@ import { IHotel } from "../../interfaces/IHotel";
 import { IHotelFilters } from "../../interfaces/IHotelFilters";
 import { useAxiosFetch } from "../../hooks/useAxiosFetch";
 import { useNavigate } from "react-router-dom";
-import { Loading } from "../generics/Loading";
+//import { Loading } from "../generics/Loading";
 import { Error } from "../generics/Error";
 import "./HotelsAdmin.css";
 

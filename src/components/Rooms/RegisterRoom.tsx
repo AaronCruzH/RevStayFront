@@ -51,7 +51,7 @@ function RegisterRoom() {
             roomID: 0
         }
 
-        axios.post<IRoom>(`http://localhost:8080/rooms/register/${hotelId}`, room,
+        axios.post<IRoom>(`http://3.85.92.181:8080/rooms/register/${hotelId}`, room,
             {
               headers:{
                 Authorization:`Bearer ${sessionToken}`
@@ -69,7 +69,11 @@ function RegisterRoom() {
 
     const navigate = useNavigate()
 
+    const sessionRole = useContext(authContext)?.token
   return (
+
+    <>
+    {sessionRole == "ADMIN" &&
     <div>
         <button onClick={()=>navigate("/rooms")}>Back</button>
         <br/>
@@ -102,7 +106,8 @@ function RegisterRoom() {
         <br/>
         <br/>
         <button onClick={registerRoom}>Register</button>
-    </div>
+    </div>}
+    </>
   )
 }
 
@@ -120,7 +125,7 @@ function RegisterRoom() {
   const [roomNumber, setRoomNumber] = useState('')
   const [roomCapacity, setRoomCapacity] = useState('')
   const [price, setPrice] = useState('')
-  const [roomType, setRoomType] = useState('Standard')
+  const [roomType, setRoomType] = useState('Single')
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -164,8 +169,11 @@ function RegisterRoom() {
     // Set submitting state
     setIsSubmitting(true)
     
+    let roomTypeUpper = roomType
+    roomTypeUpper=roomTypeUpper.toUpperCase()
+    console.log(roomTypeUpper)
     let room: IRoom = {
-      roomType: roomType,
+      roomType: roomTypeUpper,
       capacity: Number(roomCapacity),
       roomNumber: Number(roomNumber),
       price: Number(price),
@@ -175,7 +183,7 @@ function RegisterRoom() {
     
     try {
       const response = await axios.post<IRoom>(
-        `http://localhost:8080/rooms/register/${hotelId}`, 
+        `http://3.85.92.181:8080/rooms/register/${hotelId}`, 
         room,
         {
           headers: {
@@ -191,12 +199,12 @@ function RegisterRoom() {
       setRoomNumber('')
       setRoomCapacity('')
       setPrice('')
-      setRoomType('Standard')
+      setRoomType('Single')
       
       // Redirect after short delay
-      setTimeout(() => {
+      /*setTimeout(() => {
         navigate("/rooms")
-      }, 2000)
+      }, 2000)*/
       
     } catch (err: any) {
       console.error(err)
@@ -212,12 +220,9 @@ function RegisterRoom() {
   
   // Room type options
   const roomTypes = [
-    'Standard',
-    'Deluxe',
-    'Suite',
-    'Executive',
-    'Family',
-    'Single'
+    'Single',
+    'Double',
+    'Suite'
   ]
   
   return (

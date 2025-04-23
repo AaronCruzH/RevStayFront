@@ -35,7 +35,7 @@ function Courses() {
 
 
     let getCourses = async() => {
-        let res = await axios.get<ICourse[]>('http://localhost:8080/courses')
+        let res = await axios.get<ICourse[]>('http://3.85.92.181:8080/courses')
         console.log(res)
         setCourses(res.data)
     }

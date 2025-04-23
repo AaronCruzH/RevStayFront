@@ -22,14 +22,13 @@ export const HotelsLayout = () => {
   )
 }*/
 import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { HotelsUser } from "./HotelsUser";
 import { HotelsAdmin } from "./HotelsAdmin";
 import { authContext } from "../../App";
 import "./HotelsLayout.css";
 
 export const HotelsLayout = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   // Get role from context if available
   const authCtx = useContext(authContext);
   const contextRole = authCtx?.role;

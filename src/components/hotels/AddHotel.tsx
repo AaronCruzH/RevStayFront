@@ -147,7 +147,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { IHotel } from "../../interfaces/IHotel";
 import { useAxiosFetch } from "../../hooks/useAxiosFetch";
 import { useNavigate } from "react-router-dom";
-import { Error } from "../generics/Error";
+//import { Error } from "../generics/Error";
 import "./AddHotel.css";
 
 export const AddHotel = () => {
