@@ -106,7 +106,7 @@ export const ReservationsAdmin = () => {
   const handleAcceptReservation = async (reservationId: number) => {
     try {
       await axios.put(
-        `http://3.85.92.181:8080/reservations/${reservationId}/confirm`,
+        `http://3.85.92.181:8080/reservations/confirm/${reservationId}`,
         {},
         { headers: { Authorization: `Bearer ${sessionToken}` } }
       );
@@ -131,7 +131,7 @@ export const ReservationsAdmin = () => {
     
     try {
       await axios.put(
-        `http://3.85.92.181:8080/reservations/${reservationId}/reject`,
+        `http://3.85.92.181:8080/reservations/reject/${reservationId}`,
         {},
         { headers: { Authorization: `Bearer ${sessionToken}` } }
       );
@@ -156,7 +156,7 @@ export const ReservationsAdmin = () => {
     
     try {
       await axios.put(
-        `http://3.85.92.181:8080/reservations/${reservationId}/cancel`,
+        `http://3.85.92.181:8080/reservations/cancel/${reservationId}`,
         {},
         { headers: { Authorization: `Bearer ${sessionToken}` } }
       );
