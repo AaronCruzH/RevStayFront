@@ -1,5 +1,6 @@
 {
   "name": "coursemanagementfrontend",
+  "homepage": "http://my-first-bucket-210425.s3-website-us-east-1.amazonaws.com",
   "private": true,
   "version": "0.0.0",
   "type": "module",
